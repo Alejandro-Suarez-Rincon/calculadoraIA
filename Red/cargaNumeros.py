@@ -60,5 +60,5 @@ print("Entrenamiento...")
 model.fit(x_train, y_train, epochs=7, batch_size=32, validation_data=(x_test, y_test))
 
 # Guardar los pesos del modelo
-model.save('C:/Modelos/numeros.h5')
+model.save('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/numeros.h5')
 print("Modelo Guardado")

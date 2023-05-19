@@ -4,7 +4,7 @@ from tensorflow import keras
 
 # Cargar el modelo pre-entrenado
 print("Cargando el modelo")
-model = keras.models.load_model('C:/Modelos/numeros.h5')
+model = keras.models.load_model('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/numeros.h5')
 
 print("Modelo cargado")
 
@@ -25,6 +25,7 @@ def preprocess(img):
     img_array = img_array.reshape((1, 28, 28, 1))
     return img_array
 
+
 def preprocess2(img):
     # Convertir la imagen a escala de grises
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -40,12 +41,13 @@ def preprocess2(img):
     img_array = img_array.reshape((1, 28, 28, 1))
     return img_array
 
-#image = cv2.imread('C:/Users/aleja/Desktop/operaciones.png')
+
+# image = cv2.imread('C:/Users/aleja/Desktop/operaciones.png')
 cap = cv2.VideoCapture(0)
 
 while True:
     ret, frame = cap.read()
-    #frame = image.copy()
+    # frame = image.copy()
     # Dibujar un rectángulo para definir la región de interés (ROI)
     cv2.rectangle(frame, (100, 200), (200, 300), (255, 0, 0), 2)
     cv2.rectangle(frame, (250, 200), (350, 300), (0, 0, 255), 2)
