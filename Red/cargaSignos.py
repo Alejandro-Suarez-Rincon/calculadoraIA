@@ -8,7 +8,7 @@ from tensorflow import keras
 dataset_dir = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones"
 
 # Número de clases en el dataset
-num_classes = 2
+num_classes = 4
 
 # Obtener la cantidad de imágenes en el dataset
 image_count = sum([len(files) for _, _, files in os.walk(dataset_dir)])
@@ -62,7 +62,7 @@ model = keras.Sequential([
     keras.layers.MaxPooling2D((2, 2)),
     keras.layers.Flatten(),
     keras.layers.Dense(128, activation='relu'),
-    keras.layers.Dense(2, activation='softmax')# layers de salida
+    keras.layers.Dense(4, activation='softmax')# layers de salida
 ])
 
 # Compilar el modelo

@@ -90,7 +90,7 @@ while True:
 
     # Escribir el número en la pantalla
     cv2.putText(frame, str(number), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
-    #cv2.putText(frame, str(number2), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 2)
+    cv2.putText(frame, str(number2), (450, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 2)
     cv2.putText(frame, str(number3), (250, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
     cv2.putText(frame, str("="), (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
 
