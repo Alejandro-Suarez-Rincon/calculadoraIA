@@ -1,15 +1,14 @@
 import os
-import numpy as np
-import tensorflow as tf
+
+import matplotlib.pyplot as plt
 from keras.preprocessing.image import ImageDataGenerator
 from tensorflow import keras
-import matplotlib.pyplot as plt
 
 # Ruta del directorio que contiene las imágenes del dataset
 dataset_dir = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones"
 
 # Número de clases en el dataset
-num_classes = 1
+num_classes = 2
 
 # Obtener la cantidad de imágenes en el dataset
 image_count = sum([len(files) for _, _, files in os.walk(dataset_dir)])
@@ -18,7 +17,7 @@ image_count = sum([len(files) for _, _, files in os.walk(dataset_dir)])
 image_size = (28, 28)
 
 # Preprocesar los datos del dataset
-datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2)
+datagen = ImageDataGenerator(rescale=1. / 255, validation_split=0.2)
 
 train_generator = datagen.flow_from_directory(
     dataset_dir,
@@ -63,7 +62,7 @@ model = keras.Sequential([
     keras.layers.MaxPooling2D((2, 2)),
     keras.layers.Flatten(),
     keras.layers.Dense(128, activation='relu'),
-    keras.layers.Dense(1, activation='sigmoid')
+    keras.layers.Dense(2, activation='softmax')# layers de salida
 ])
 
 # Compilar el modelo

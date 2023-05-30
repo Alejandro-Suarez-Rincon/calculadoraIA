@@ -1,8 +1,9 @@
-import cv2
 import os
 
+import cv2
+
 # Ruta de la carpeta que contiene las imágenes
-carpeta_imagenes = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones\Suma"
+carpeta_imagenes = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones\Resta"
 
 # Obtener la lista de archivos en la carpeta
 archivos = os.listdir(carpeta_imagenes)

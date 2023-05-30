@@ -67,12 +67,12 @@ while True:
     # frame = image.copy()
     # Dibujar un rectángulo para definir la región de interés (ROI)
     cv2.rectangle(frame, (100, 200), (200, 300), (255, 0, 0), 2)
-    cv2.rectangle(frame, (250, 200), (350, 300), (0, 0, 255), 2)
-    cv2.rectangle(frame, (400, 200), (500, 300), (0, 255, 0), 2)
+    cv2.rectangle(frame, (200, 200), (300, 300), (0, 0, 255), 2)
+    cv2.rectangle(frame, (300, 200), (400, 300), (0, 255, 0), 2)
     # Obtener la imagen de la ROI
     roi1 = frame[200:300, 100:200]  # Esquina superiror, esquina inferior
-    roi2 = frame[200:300, 250:350]  # Esquina superiror, esquina inferior
-    roi3 = frame[200:300, 400:500]  # Esquina superiror, esquina inferior
+    roi2 = frame[200:300, 200:300]  # Esquina superiror, esquina inferior
+    roi3 = frame[200:300, 300:400]  # Esquina superiror, esquina inferior
     # Preprocesar la imagen de la ROI
     img_array = preprocess(roi1)
     img_array2 = preprocess2(roi2) #Signos
@@ -89,9 +89,23 @@ while True:
     number3 = np.argmax(prediction3)
 
     # Escribir el número en la pantalla
-    cv2.putText(frame, str(number), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 2)
-    cv2.putText(frame, str(number2), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 2)
-    respuesta = int(number)  # "*" # (number)
+    cv2.putText(frame, str(number), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+    #cv2.putText(frame, str(number2), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 2)
+    cv2.putText(frame, str(number3), (250, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+    cv2.putText(frame, str("="), (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+
+
+    if(number2 == 0):
+        cv2.putText(frame, str("-"), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+        respuesta = int(number) - int(number3)
+        cv2.putText(frame, str(respuesta), (350, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+
+
+    if(number2 == 1):
+        cv2.putText(frame, str("+"), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+        respuesta = int(number) + int(number3)
+        cv2.putText(frame, str(respuesta), (350, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
+
     cv2.imshow("Calculadora con IA", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
