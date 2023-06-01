@@ -3,7 +3,7 @@ import os
 from PIL import Image
 
 # Ruta del directorio que contiene las imágenes
-directorio_imagenes = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones\Multiplicacion"
+directorio_imagenes = 'C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/DataSetOperaciones/2'
 
 # Tamaño deseado para las imágenes redimensionadas
 nuevo_ancho = 28

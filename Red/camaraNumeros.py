@@ -7,7 +7,6 @@ print("Cargando el modelo")
 model = keras.models.load_model('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/numeros.h5')
 model2 = keras.models.load_model('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/signos.h5')
 
-
 print("Modelo cargado")
 
 
@@ -59,6 +58,7 @@ def preprocess3(img):
     img_array = img_array.reshape((1, 28, 28, 1))
     return img_array
 
+
 # image = cv2.imread('C:/Users/aleja/Desktop/operaciones.png')
 cap = cv2.VideoCapture(0)
 
@@ -75,17 +75,17 @@ while True:
     roi3 = frame[200:350, 400:550]  # Esquina superiror, esquina inferior
     # Preprocesar la imagen de la ROI
     img_array = preprocess(roi1)
-    img_array2 = preprocess2(roi2) #Signos
+    img_array2 = preprocess2(roi2)  # Signos
     img_array3 = preprocess3(roi3)
 
     # Realizar la predicción utilizando el modelo pre-entrenado
     prediction = model.predict(img_array)
-    prediction2 = model2.predict(img_array2) #Signos
+    prediction2 = model2.predict(img_array2)  # Signos
     prediction3 = model.predict(img_array3)
 
     # Obtener el número predicho
     number = np.argmax(prediction)
-    number2 = np.argmax(prediction2) #Signos
+    number2 = np.argmax(prediction2)  # Signos
     number3 = np.argmax(prediction3)
 
     # Escribir el número en la pantalla
@@ -94,19 +94,17 @@ while True:
     cv2.putText(frame, str(number3), (250, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
     cv2.putText(frame, str("="), (300, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
 
-
-    if(number2 == 0):
+    if (number2 == 0):
         cv2.putText(frame, str("-"), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
         respuesta = int(number) - int(number3)
         cv2.putText(frame, str(respuesta), (350, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
 
-
-    if(number2 == 1):
+    if (number2 == 1):
         cv2.putText(frame, str("+"), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
         respuesta = int(number) + int(number3)
         cv2.putText(frame, str(respuesta), (350, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
 
-    if(number2 == 2):
+    if (number2 == 2):
         cv2.putText(frame, str("/"), (150, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)
         respuesta = int(number) / int(number3)
         cv2.putText(frame, str(respuesta), (350, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 165, 255), 2)

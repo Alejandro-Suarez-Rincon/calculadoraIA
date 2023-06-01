@@ -3,7 +3,7 @@ import os
 import cv2
 
 # Ruta de la carpeta que contiene las imágenes
-carpeta_imagenes = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones\Divicion"
+carpeta_imagenes = 'C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/DataSetOperaciones/3'
 
 # Obtener la lista de archivos en la carpeta
 archivos = os.listdir(carpeta_imagenes)
@@ -19,6 +19,6 @@ for archivo in archivos:
         imagen = cv2.imread(ruta_imagen, 0)
 
         # Guardar la imagen en blanco y negro
-        nombre_salida = archivo.split(".")[0] + ".jpg"  # Nombre de salida
+        nombre_salida = archivo.split(".")[0] + ".png"  # Nombre de salida
         ruta_salida = os.path.join(carpeta_imagenes, nombre_salida)
         cv2.imwrite(ruta_salida, imagen)
