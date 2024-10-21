@@ -63,7 +63,7 @@ modelo resultante.
 Este repositorio ya incluye modelos preentrenados, por lo que solo necesitas seguir los
 pasos a continuación para ejecutar el proyecto.
 
-1. Asegurarse de tener las librerias listas para usarse
+1. Asegúrate de tener instaladas las siguientes bibliotecas antes de ejecutar el proyecto:
    - cv2
    - numpy
    - tensorflow
