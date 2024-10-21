@@ -1,11 +1,20 @@
 import cv2
 import numpy as np
 from tensorflow import keras
+from pathlib import Path
+
+
+# Obtener la ruta base del archivo actual
+base_dir = Path(__file__).resolve().parent
+
+# Rutas relativas
+model_path = base_dir /'../Modelos/numeros.h5'
+model2_path = base_dir /'../Modelos/signos.h5'
 
 # Cargar el modelo pre-entrenado
 print("Cargando el modelo")
-model = keras.models.load_model('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/numeros.h5')
-model2 = keras.models.load_model('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/signos.h5')
+model = keras.models.load_model(model_path)
+model2 = keras.models.load_model(model2_path)
 
 print("Modelo cargado")
 

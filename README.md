@@ -10,6 +10,7 @@
   - [Modelos](#modelos)
   - [Preparacion](#preparacion)
   - [Red](#red)
+- [Guía de inicio rápido](#guía-de-inicio-rápido)
 
 # Descripción
 Este repositorio contiene un proyecto que demuestra el uso de redes neuronales
@@ -58,3 +59,6 @@ entrenar las redes neuronales y optimizarlas para que `camaraNumeros.py` pueda u
 de manera eficiente. Esto facilita entrenar las redes múltiples veces y elegir el mejor
 modelo resultante.
 
+# Guía de inicio rápido
+Este repositorio ya incluye modelos preentrenados, por lo que solo necesitas seguir los
+pasos a continuación para ejecutar el proyecto.
