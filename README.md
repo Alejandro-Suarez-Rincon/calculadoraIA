@@ -62,3 +62,19 @@ modelo resultante.
 # Guía de inicio rápido
 Este repositorio ya incluye modelos preentrenados, por lo que solo necesitas seguir los
 pasos a continuación para ejecutar el proyecto.
+
+1. Asegurarse de tener las librerias listas para usarse
+   - cv2
+   - numpy
+   - tensorflow
+   - pathlib
+   - matplotlib
+   - PIL
+  
+  Se puede instalar con el siguiente comando
+
+  ```bash
+  pip install opencv-python numpy tensorflow pathlib matplotlib pillow
+  ```
+
+1. Dentro de `./Red/camaraNumeros.py` ejecutar como un programa normal de python
