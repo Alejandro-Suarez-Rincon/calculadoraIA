@@ -78,3 +78,5 @@ pasos a continuación para ejecutar el proyecto.
   ```
 
 1. Dentro de `./Red/camaraNumeros.py` ejecutar como un programa normal de python
+
+Para salir con `Q`
