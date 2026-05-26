@@ -1,7 +1,11 @@
 import numpy as np
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from matplotlib import pyplot as plt
 from tensorflow import keras
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent
+model_path = base_dir / '../Modelos/numeros.h5'
 
 # Cargar el conjunto de datos MNIST
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
@@ -60,5 +64,5 @@ print("Entrenamiento...")
 model.fit(x_train, y_train, epochs=7, batch_size=32, validation_data=(x_test, y_test))
 
 # Guardar los pesos del modelo
-model.save('C:/Alejandro/Programacion/Python/calculadoraIA/Modelos/numeros.h5')
+model.save(model_path)
 print("Modelo Guardado")

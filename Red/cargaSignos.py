@@ -1,11 +1,14 @@
 import os
-
 import matplotlib.pyplot as plt
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow import keras
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent
+model_path = base_dir / '../Modelos/signos.h5'
 
 # Ruta del directorio que contiene las imágenes del dataset
-dataset_dir = "C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\DataSetOperaciones"
+dataset_dir = base_dir / '../Modelos/DataSetOperaciones'
 
 # Número de clases en el dataset
 num_classes = 4
@@ -80,5 +83,5 @@ model.fit(
 )
 
 # Guardar los pesos del modelo entrenado
-model.save('C:\Alejandro\Programacion\Python\calculadoraIA\Modelos\signos.h5')
+model.save(model_path)
 print("Modelo Guardado")
