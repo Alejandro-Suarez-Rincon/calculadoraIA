@@ -1,82 +1,87 @@
-<h1 style="text-align: center; font-size: 36px;">
-    Calculadora IA
-</h1>
+# CalculadoraIA
 
-# Index
-- [Index](#index)
+Aplicación de visión por computador que detecta y resuelve operaciones matemáticas simples en tiempo real desde la cámara web, usando redes neuronales entrenadas con TensorFlow.
+
+## Índice
+
 - [Descripción](#descripción)
-- [Tecnologias](#tecnologias)
+- [Stack](#stack)
 - [Estructura](#estructura)
-  - [Modelos](#modelos)
-  - [Preparacion](#preparacion)
-  - [Red](#red)
-- [Guía de inicio rápido](#guía-de-inicio-rápido)
+- [Inicio rápido](#inicio-rápido)
+- [Uso](#uso)
 
-# Descripción
-Este repositorio contiene un proyecto que demuestra el uso de redes neuronales
-para la detección y resolución de ecuaciones matemáticas simples
-(suma, resta, multiplicación y división) a través de la cámara del computador.
-El sistema reconoce las ecuaciones capturadas y muestra la solución directamente
-en pantalla.
+## Descripción
 
-# Tecnologias
-- Python
-- Tensor-Flow
+El sistema captura video en tiempo real, aplica una corrección de perspectiva sobre una hoja de papel y divide el área visible en tres zonas de reconocimiento: número 1, operador y número 2. Dos modelos de red neuronal convolucional identifican los dígitos y el símbolo matemático, y el resultado se muestra superpuesto en pantalla.
 
-# Estructura
-El proyecto se organiza en tres directorios principales: `Modelos`, `Preparacion` y `Red`.
-Cada uno desempeña un rol fundamental en el correcto funcionamiento del programa, el cual
-se ejecuta de manera sencilla con Python, sin necesidad de Kubernetes u otras herramientas
-complejas.
+Soporta suma, resta, multiplicación y división.
+
+## Stack
+
+- **Python 3.9**
+- **TensorFlow / Keras** — inferencia con modelos CNN preentrenados
+- **OpenCV** — captura de video, corrección de perspectiva y renderizado
+- **NumPy** — procesamiento de arrays e imágenes
+- **Pillow / Matplotlib** — utilidades de preparación del dataset
+
+## Estructura
 
 ```text
-/calculadoraIA
+calculadoraIA/
 ├── Modelos/
-|   ├── DataSetOperaciones
-|   ├── numeros.h5
-|   └── signos.h5
-├── Preparacion
-│   ├── blancoNegro.py
-│   └── Redimencionar.py
-└── Red
-    ├── camaraNumeros.py
-    ├── cargaNumeros.py
-    └── cargaSignos.py
+│   ├── numeros.h5          # Modelo CNN para dígitos 0-9
+│   ├── signos.h5           # Modelo CNN para operadores + - * /
+│   └── DataSetOperaciones/ # Dataset de entrenamiento de operadores
+├── Preparacion/
+│   ├── blancoNegro.py      # Convierte imágenes del dataset a escala de grises
+│   └── Redimencionar.py    # Redimensiona imágenes al tamaño de entrada del modelo
+├── Red/
+│   ├── camaraNumeros.py    # Programa principal — cámara en tiempo real
+│   ├── cargaNumeros.py     # Entrenamiento del modelo de dígitos
+│   └── cargaSignos.py      # Entrenamiento del modelo de operadores
+├── run.sh                  # Script de arranque
+└── requirements.txt
 ```
 
-## Modelos
-El directorio `Modelos` contiene los modelos preentrenados para el reconocimiento de números
-y signos matemáticos, almacenados en archivos `.h5`.
+## Inicio rápido
 
-## Preparacion
-En el directorio `Preparacion` se encuentran los scripts necesarios para el procesamiento
-y preparación del conjunto de datos `DataSet` de las operaciones básicas. Estos scripts
-incluyen la conversión de imágenes a blanco y negro y la redimensión de las mismas.
+El repositorio incluye los modelos preentrenados. Solo necesitas ejecutar:
 
-## Red
-El directorio `Red` se encarga del entrenamiento de los modelos. Los scripts aquí permiten
-entrenar las redes neuronales y optimizarlas para que `camaraNumeros.py` pueda utilizarlas
-de manera eficiente. Esto facilita entrenar las redes múltiples veces y elegir el mejor
-modelo resultante.
+```bash
+bash run.sh
+```
 
-# Guía de inicio rápido
-Este repositorio ya incluye modelos preentrenados, por lo que solo necesitas seguir los
-pasos a continuación para ejecutar el proyecto.
+El script crea automáticamente el entorno virtual si no existe, instala las dependencias y arranca el programa. Si falla al iniciar, reintenta la instalación de dependencias antes de rendirse.
 
-1. Asegúrate de tener instaladas las siguientes bibliotecas antes de ejecutar el proyecto:
-   - cv2
-   - numpy
-   - tensorflow
-   - pathlib
-   - matplotlib
-   - PIL
-  
-  Se puede instalar con el siguiente comando
+### Instalación manual (opcional)
 
-  ```bash
-  pip install opencv-python numpy tensorflow pathlib matplotlib pillow
-  ```
+```bash
+python3 -m venv .env
+source .env/bin/activate
+pip install -r requirements.txt
+python Red/camaraNumeros.py
+```
 
-1. Dentro de `./Red/camaraNumeros.py` ejecutar como un programa normal de python
+## Uso
 
-Para salir con `Q`
+1. Al abrir el programa verás la imagen de tu cámara.
+2. Haz clic en las **4 esquinas de una hoja de papel** para definir el área de detección.
+3. Coloca sobre el papel un número, un operador y otro número, cada uno dentro de su zona resaltada.
+4. El resultado aparece en pantalla cuando el modelo supera el umbral de confianza.
+
+| Tecla | Acción |
+|---|---|
+| `R` | Reiniciar la selección de esquinas |
+| `Q` | Salir |
+
+### Reentrenar los modelos
+
+Si quieres regenerar los modelos desde cero:
+
+```bash
+# Modelo de dígitos (MNIST)
+python Red/cargaNumeros.py
+
+# Modelo de operadores
+python Red/cargaSignos.py
+```
